@@ -10,7 +10,7 @@
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
-    "types": [],
+    "types": ["node"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -38,8 +38,6 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
     "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
     "skipLibCheck": true
   }
 }

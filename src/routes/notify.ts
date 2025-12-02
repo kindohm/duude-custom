@@ -1,20 +1,24 @@
 import express from "express";
 import type { Request, Response } from "express";
+import { getDb } from "../db.js";
 
 const router = express.Router();
 
-router.post("/", (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   try {
-    const { message } = req.body;
+    const db = getDb();
+    const datetime = new Date().toISOString();
+    const notificationsRef = db.collection("notifications");
+    const docRef = await notificationsRef.add({
+      datetime,
+    });
 
-    if (!message) {
-      return res.status(400).json({ error: "Message is required" });
-    }
-
-    // Process notification
-    console.log(`Notification received: ${message}`);
-
-    res.json({ success: true, message: "Notification processed" });
+    return res.json({
+      message: "Notification created",
+      id: docRef.id,
+      datetime,
+      status: 201,
+    });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }

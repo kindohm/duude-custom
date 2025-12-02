@@ -1,6 +1,6 @@
 import express from "express";
-import notifyRoute from "./routes/notify";
-import readRoute from "./routes/read";
+import notifyRoute from "./routes/notify.js";
+import readRoute from "./routes/read.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // API Routes
-app.use("/api/notify", notifyRoute);
+app.use("/api/send", notifyRoute);
 app.use("/api/read", readRoute);
 
 // Start server
